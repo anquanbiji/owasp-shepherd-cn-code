@@ -1,0 +1,1112 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="OWASP shepherd 学习笔记，专注对 owasp shepherd 中文翻译，漏洞源代码学习，让开发和测试同学真正理解安全漏洞，提高安全意识，打造安全的系统">
+      
+      
+      
+        <meta name="author" content="anquanbiji.com">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>OWASP shepherd 学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#owsap-shepherd" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="OWASP shepherd 学习笔记" class="md-header__button md-logo" aria-label="OWASP shepherd 学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OWASP shepherd 学习笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              shepherd 项目介绍
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="OWASP shepherd 学习笔记" class="md-nav__button md-logo" aria-label="OWASP shepherd 学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    OWASP shepherd 学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          shepherd 项目介绍
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="index.html" class="md-nav__link md-nav__link--active">
+        shepherd 项目介绍
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    优点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    管理
+  </a>
+  
+    <nav class="md-nav" aria-label="管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    首次登录后台
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    开启"作弊"模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    开启积分功能
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    修改做题模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    开/关 某个题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    开/关 某类题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    创建新用户
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    二次开发
+  </a>
+  
+    <nav class="md-nav" aria-label="二次开发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    汉化方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    二次开发步骤
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    二次开发记录
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="security_qa.html" class="md-nav__link">
+        shepherd CN 介绍
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http_proxy.html" class="md-nav__link">
+        学前基础知识
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        web漏洞学习笔记
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="web漏洞学习笔记" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          web漏洞学习笔记
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      <label class="md-nav__link" for="__nav_4_1">
+        基础等级课程
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="基础等级课程" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础等级课程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/insecure-derect-object-references.html" class="md-nav__link">
+        Insecure Direct Object References(不安全的直接对象引用)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/poor-data-validation.html" class="md-nav__link">
+        Poor Data Validation(失效的数据验证)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/security-misconfiguration.html" class="md-nav__link">
+        Security Misconfiguration(安全配置错误)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Broken-Authentication-and-Session-Management.html" class="md-nav__link">
+        Broken Authentication and Session Management(失效的身份认证和会话管理)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Failure-to-Restrict-URL-Access.html" class="md-nav__link">
+        Failure to Restrict URL Access(没有限制URL访问)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Cross-Site-Scripting.html" class="md-nav__link">
+        Cross Site Scripting(跨站脚本攻击)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Cross-Site-Scripting-One.html" class="md-nav__link">
+        Cross Site Scripting One(跨站脚本攻击 1)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        列兵等级课程
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="列兵等级课程" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          列兵等级课程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Insecure-Cryptographic-Storage.html" class="md-nav__link">
+        Insecure Cryptographic Storage(不安全的加密存储)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/SQL-Injection-Lesson.html" class="md-nav__link">
+        SQL Injection Lesson(SQL 注入)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Insecure-Cryptographic-Storage-Challenge-1.html" class="md-nav__link">
+        Insecure Cryptographic Storage Challenge 1(不安全的加密存储 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Insecure-Direct-Object-References-Challenge-One.html" class="md-nav__link">
+        Insecure Direct Object References Challenge One(不安全的直接对象引用 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Poor-Validation-One.html" class="md-nav__link">
+        Poor Validation One(失效的数据认证 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/SQL-Injection-Challenge-One.html" class="md-nav__link">
+        SQL Injection Challenge One(SQL 注入 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Session-Management-Challenge-One.html" class="md-nav__link">
+        Session Management Challenge One(会话管理 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Failure-To-Restrict-URL-Access-Challenge-1.html" class="md-nav__link">
+        Failure To Restrict URL Access Challenge 1(没有限制URL访问 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Cross-Site-Request-Forgery.html" class="md-nav__link">
+        Cross-Site Request Forgery(跨站请求伪造)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contact.html" class="md-nav__link">
+        联系我们
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    优点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    管理
+  </a>
+  
+    <nav class="md-nav" aria-label="管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    首次登录后台
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    开启"作弊"模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    开启积分功能
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    修改做题模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    开/关 某个题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    开/关 某类题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    创建新用户
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    二次开发
+  </a>
+  
+    <nav class="md-nav" aria-label="二次开发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    汉化方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    二次开发步骤
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    二次开发记录
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="owsap-shepherd">OWSAP shepherd</h1>
+<p><strong>说明</strong>:本文档主要针对当前最新版owaspSecurityShepherd_v3.1_VM进行编写,如果您使用的是其他版本，可能存在略微差异</p>
+<h2 id="_1">介绍</h2>
+<p>OWASP security shepherd项目是web和移动应用安全培训平台.该项目的目的培养和提高不同技能人群的安全意识。让AppSec新手或经验丰富的研发/测试工程师提高他们的安全测试技能，成为安全专家。  </p>
+<p><a href="https://github.com/OWASP/SecurityShepherd">OWSAP shepherd github代码</a></p>
+<h2 id="_2">优点</h2>
+<p>作者自身列举了很多:<br />
+<a href="https://github.com/OWASP/SecurityShepherd#why-choose-security-shepherd">owasp shepherd 优点</a></p>
+<p>整理几条认为比较主要的:  </p>
+<ul>
+<li>
+<p>持续更新 <br />
+这个项目作者还在持续更新，不断加入最新产生的安全漏洞，非常难得 <br />
+从github issus看,参与的用户非常多，受到了广大用户的喜爱</p>
+</li>
+<li>
+<p>覆盖web和移动漏洞<br />
+同时有web和移动漏洞的靶场比较少见</p>
+</li>
+<li>
+<p>漏洞分等级 <br />
+可以适合不同需求的同学学习，如研发和测试同学(仅使用前两个等级)</p>
+</li>
+<li>
+<p>源代码开源且安全<br />
+源代码开源，可根据自身需求进行修改<br />
+源代码中增加了很多安全防护，作为源代码审计、安全开发的典范项目 </p>
+</li>
+</ul>
+<h2 id="_3">安装</h2>
+<p><strong>vmware虚拟机安装</strong>  </p>
+<ul>
+<li>下载当前最新版3.1 vm<br />
+<a href="https://github4.com/OWASP/SecurityShepherd/releases/download/v3.1/owaspSecurityShepherd_v3.1_VM.zip">owaspSecurityShepherd_v3.1_VM.zip</a></li>
+<li>使用vmware打开</li>
+<li>主机登录账号<br />
+用户名:securityshepherd <br />
+密码: shepherd3.1<br />
+该账号可以使用sudo<br />
+切换到root命令:sudo su root  </li>
+<li>
+<p>网络配置<br />
+如果无法联网，操作如下:<br />
+<strong>查看所有网卡信息</strong><br />
+ifconfig -a <br />
+<strong>开启网卡</strong><br />
+sudo dhclient ens33 <br />
+注:ens33 为网卡名    </p>
+</li>
+<li>
+<p>输入你的ip地址 即可访问
+默认的管理员账号和密码:admin/password</p>
+</li>
+</ul>
+<p><strong>docker安装</strong></p>
+<p>参考官方文档 <a href="https://github.com/OWASP/SecurityShepherd/wiki/Docker-Environment-Setup">owasp shepherd docker安装</a> <br />
+ubuntu 安装如下<br />
+<div class="highlight"><pre><span></span><code># Install pre-reqs
+sudo apt install git maven docker docker-compose default-jdk
+
+# Clone the github repository
+git clone https://github.com/OWASP/SecurityShepherd.git
+
+# Change directory into the local copy of the repository  非常非常重要
+cd SecurityShepherd
+
+# Add current user to the docker group (don&#39;t have to run docker with sudo)
+sudo gpasswd -a $USER docker
+
+# Run maven to generate the WAR and HTTPS Cert.
+mvn -Pdocker clean install -DskipTests
+
+# Build the docker images, docker network and bring up the environment
+docker-compose up
+</code></pre></div></p>
+<p>由于测试时，使用的是shepherd3.1 源代码进行安装，将源代码放到了非SecurityShepherd路径,当做SQL注入相关题目时，会显示如下错误信息  <br />
+<div class="highlight"><pre><span></span><code>secshep_tomcat | java.sql.SQLException: Access denied for user &#39;firstBloodyMessL&#39;@&#39;secshep_tomcat.文件路径名&#39; (using password: YES)  
+</code></pre></div>
+查看<a href="https://github.com/OWASP/SecurityShepherd/issues/502">github issus</a>,最后将当前路径修改为 SecurityShepherd 得以解决  </p>
+<details class="note"><summary>允许HTTP访问</summary><p>默认安装后,tomcat强制将http请求跳转到https<br />
+开启http请求方法:<br />
+删除  docker\tomcat\webxml.patch 中 security-constraint 标签相关内容 </p>
+</details>
+<h2 id="_4">管理</h2>
+<h3 id="_5">首次登录后台</h3>
+<p>需要修改默认密码:admin/password  </p>
+<h3 id="_6">开启"作弊"模式</h3>
+<p>管理员后台配置:<br />
+Admin-&gt;Configuration-&gt;Configure Cheat Sheets <br />
+可以允许在做题时，直接查看答案提示信息 </p>
+<h3 id="_7">开启积分功能</h3>
+<p>Admin-&gt;Configuration-&gt;Scoreboard Configuration <br />
+每个题都有分数，作对了获得对应分数  </p>
+<h3 id="_8">修改做题模式</h3>
+<p>Admin-&gt;Module Management-&gt;Change Module Layout
+有CTF模式: 必须做完当前题 才能查看下一个题<br />
+Tournament模式: 会显示所有题, 可自由选择<br />
+Open Floor模式: 分为课程和挑战 两个大的级别进行展示  </p>
+<h3 id="_9">开/关 某个题</h3>
+<p>Admin-&gt;Module Management-&gt;Open and Close Modules<br />
+选中对应的题(支持多选)可以打开或关闭对应的题  </p>
+<h3 id="_10">开/关 某类题</h3>
+<p>Admin-&gt;Module Management-&gt;Open or Close by Category 
+选中对应的题(支持多选)可以打开或关闭对应的题  </p>
+<h3 id="_11">创建新用户</h3>
+<ul>
+<li>必须先创建个分类<br />
+Admin-&gt;User Management-&gt;Create Class</li>
+<li>
+<p>在创建用户<br />
+Admin-&gt;User Management-&gt;Add Players </p>
+</li>
+<li>
+<p>批量删除用户<br />
+默认mysql账号和密码: root/CowSaysMoo<br />
+根据分类删除用户<br />
+delete from users where classId in (select classId from class where className = '2021-8');<br />
+update users set  userPass=SHA2('admin',512)  where classId in (select classId from class where className = '2021-8'); </p>
+</li>
+</ul>
+<h2 id="_12">二次开发</h2>
+<h3 id="_13">汉化方法</h3>
+<p>该项目支持默认支持多种语言,包括英语和汉语等，具体实现可以参考官方wiki.<a href="https://github.com/OWASP/SecurityShepherd/wiki/Converting-Pages-to-Support-Translation">owasp shepherd中文版</a> <br />
+相关的页面展示信息会保存到*.properties文件中<br />
+如英文页面信息保存在 <br />
+zf8ed52591579339e590e0726c7b24009f3ac54cdff1b81a65db1688d86efb3a.properties<br />
+对应中文页面信息保存在相同目录下<br />
+zf8ed52591579339e590e0726c7b24009f3ac54cdff1b81a65db1688d86efb3a_zh.properties  </p>
+<p>src/jsp/challenges/HASH.jsp的页面配置保存在src/i18n/challenges/HASH.properties  </p>
+<h3 id="_14">二次开发步骤</h3>
+<ul>
+<li>
+<p>下载源代码 
+<div class="highlight"><pre><span></span><code>wget https://github.com/OWASP/SecurityShepherd/archive/refs/tags/v3.1.tar.gz  
+</code></pre></div>
+由于我使用的是owaspSecurityShepherd_v3.1_VM环境，所以使用对应的源代码，否则会导致未知错误  </p>
+</li>
+<li>
+<p>使用任何编辑器修改代码  </p>
+</li>
+<li>重新打包代码<br />
+mvn -Pdocker clean install -DskipTests</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code>yum -y install  maven 
+或
+apt install maven 
+</code></pre></div>
+- 替换文件部署 
+web目录在  /var/lib/tomcat8/webapps/ROOT/
+<div class="highlight"><pre><span></span><code>cp target/owaspSecurityShepherd.war  /var/lib/tomcat8/webapps/ROOT.war
+</code></pre></div>
+- 重启tomcat服务<br />
+<div class="highlight"><pre><span></span><code>/etc/init.d/tomcat8 restart
+</code></pre></div></p>
+<h3 id="_15">二次开发记录</h3>
+<ul>
+<li>
+<p>添加汉化文件<br />
+<div class="highlight"><pre><span></span><code>src/main/resources/i18n/challenges/insecureCryptoStorage/insecureCryptoStorage_zh.properties 
+src/main/resources/i18n/challenges/directObject/o9a450a64cc2a196f55878e2bd9a27a72daea0f17017253f87e7ebd98c71c98c_zh.properties
+src/main/resources/i18n/challenges/poorValidation/poorValidationStrings_zh.properties
+src/main/resources/i18n/challenges/injection/e1e109444bf5d7ae3d67b816538613e64f7d0f51c432a164efc8418513711b0a_zh.properties
+src/main/resources/i18n/challenges/sessionManagement/dfd6bfba1033fa380e378299b6a998c759646bd8aea02511482b8ce5d707f93a_zh.properties
+src/main/resources/i18n/challenges/urlAccess/4a1bc73dd68f64107db3bbc7ee74e3f1336d350c4e1e51d4eda5b52dddf86c99_zh.properties
+src/main/resources/i18n/text_zh.properties
+
+src/main/webapp/login.jsp
+src/main/webapp/index.jsp
+</code></pre></div></p>
+</li>
+<li>
+<p>修改
+<div class="highlight"><pre><span></span><code>src/main/java/servlets/module/SolutionSubmit.java
+src/main/java/servlets/module/RefreshMenu.java
+
+添加输出编码代码 解决返回页面乱码问题 
+response.setContentType(&quot;text/html;charset=utf-8&quot;);
+</code></pre></div>
+<a href="https://github.com/OWASP/SecurityShepherd/issues/580" title="解决owasp Shepherd 中文乱码问题">owasp Shepherd 中文乱码issues</a></p>
+</li>
+<li>
+<p>只开放前两个等级的web安全漏洞<br />
+在文件
+<div class="highlight"><pre><span></span><code>src/main/java/dbProcs/Getter.java
+</code></pre></div>
+定义了每个等级对应的rank值,等级越高，rank值越高 
+<div class="highlight"><pre><span></span><code>private static int fieldTrainingCap = 45;
+
+private static int privateCap = 80;
+
+private static int corporalCap = 105;
+
+private static int sergeantCap = 130;
+
+private static int lieutenantCap = 145;
+
+private static int majorCap = 175;
+
+private static int admiralCap = 999; 
+</code></pre></div>
+这个值对应core数据库 modules 表的 incrementalRank<br />
+因此只需要编写两条SQL可以实现需求  </p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>update modules set moduleStatus=&#39;closed&#39;
+update modules set moduleStatus=&#39;open&#39; where incrementalRank &lt; 80 and  moduleCategory not like &#39;%Mobile%&#39;
+</code></pre></div>
+<p>如果你使用docker部署环境,直接连接docker容器<br />
+<div class="highlight"><pre><span></span><code>docker exec -it secshep_mysql /bin/bash
+mysql -uroot -p 
+#mysql 密码是 CowSaysMoo
+update modules set moduleStatus=&#39;closed&#39;
+update modules set moduleStatus=&#39;open&#39; where incrementalRank &lt; 80 and  moduleCategory not like &#39;%Mobile%&#39;
+</code></pre></div></p>
+                
+              
+              
+                <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81NDA3MS8zMDU0Mw==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+      
+        
+        <a href="security_qa.html" class="md-footer__link md-footer__link--next" aria-label="下一页: shepherd CN 介绍" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              shepherd CN 介绍
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            ©Copyright 2021 - 安全笔记 小组 - 专注安全防御解决方案 - <a href="http://anquanbiji.com" target="_blank"><strong>安全笔记网站</strong></a>
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>

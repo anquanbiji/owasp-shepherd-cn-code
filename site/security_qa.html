@@ -1,0 +1,895 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="OWASP shepherd 学习笔记，专注对 owasp shepherd 中文翻译，漏洞源代码学习，让开发和测试同学真正理解安全漏洞，提高安全意识，打造安全的系统">
+      
+      
+      
+        <meta name="author" content="anquanbiji.com">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>shepherd CN 介绍 - OWASP shepherd 学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-owasp-shepherd-cn" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="OWASP shepherd 学习笔记" class="md-header__button md-logo" aria-label="OWASP shepherd 学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OWASP shepherd 学习笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              shepherd CN 介绍
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="OWASP shepherd 学习笔记" class="md-nav__button md-logo" aria-label="OWASP shepherd 学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    OWASP shepherd 学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        shepherd 项目介绍
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          shepherd CN 介绍
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="security_qa.html" class="md-nav__link md-nav__link--active">
+        shepherd CN 介绍
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    项目介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    项目对象
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    项目目标
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    项目收益
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    项目课程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    参与项目
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    项目支持
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    项目网址
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    致谢
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http_proxy.html" class="md-nav__link">
+        学前基础知识
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        web漏洞学习笔记
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="web漏洞学习笔记" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          web漏洞学习笔记
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      <label class="md-nav__link" for="__nav_4_1">
+        基础等级课程
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="基础等级课程" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础等级课程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/insecure-derect-object-references.html" class="md-nav__link">
+        Insecure Direct Object References(不安全的直接对象引用)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/poor-data-validation.html" class="md-nav__link">
+        Poor Data Validation(失效的数据验证)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/security-misconfiguration.html" class="md-nav__link">
+        Security Misconfiguration(安全配置错误)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Broken-Authentication-and-Session-Management.html" class="md-nav__link">
+        Broken Authentication and Session Management(失效的身份认证和会话管理)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Failure-to-Restrict-URL-Access.html" class="md-nav__link">
+        Failure to Restrict URL Access(没有限制URL访问)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Cross-Site-Scripting.html" class="md-nav__link">
+        Cross Site Scripting(跨站脚本攻击)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Cross-Site-Scripting-One.html" class="md-nav__link">
+        Cross Site Scripting One(跨站脚本攻击 1)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        列兵等级课程
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="列兵等级课程" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          列兵等级课程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Insecure-Cryptographic-Storage.html" class="md-nav__link">
+        Insecure Cryptographic Storage(不安全的加密存储)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/SQL-Injection-Lesson.html" class="md-nav__link">
+        SQL Injection Lesson(SQL 注入)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Insecure-Cryptographic-Storage-Challenge-1.html" class="md-nav__link">
+        Insecure Cryptographic Storage Challenge 1(不安全的加密存储 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Insecure-Direct-Object-References-Challenge-One.html" class="md-nav__link">
+        Insecure Direct Object References Challenge One(不安全的直接对象引用 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Poor-Validation-One.html" class="md-nav__link">
+        Poor Validation One(失效的数据认证 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/SQL-Injection-Challenge-One.html" class="md-nav__link">
+        SQL Injection Challenge One(SQL 注入 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Session-Management-Challenge-One.html" class="md-nav__link">
+        Session Management Challenge One(会话管理 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Failure-To-Restrict-URL-Access-Challenge-1.html" class="md-nav__link">
+        Failure To Restrict URL Access Challenge 1(没有限制URL访问 1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vul/Cross-Site-Request-Forgery.html" class="md-nav__link">
+        Cross-Site Request Forgery(跨站请求伪造)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contact.html" class="md-nav__link">
+        联系我们
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    项目介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    项目对象
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    项目目标
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    项目收益
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    项目课程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    参与项目
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    项目支持
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    项目网址
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    致谢
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="-owasp-shepherd-cn">基础安全测试 - owasp shepherd CN项目</h1>
+<p>作为开发和测试人员,如果想构建安全的系统，首先需要在实际web项目能够中查找到对应漏洞，进一步加深对漏洞的理解。<br />
+owasp shepherd CN 项目就是一套集合了常见安全漏洞的web系统，希望结合真实存在的安全漏洞，让开发和测试同学提高安全意识，进而打造安全系统    </p>
+<p><strong>owasp shepherd CN  是一套集成了常见web漏洞的系统，每个页面是对应一个安全漏洞，包括安全漏洞的介绍，用户需要根据提示信息利用漏洞，找到通关密钥, 提交到系统，如果提交正确，表示对该漏洞已经完整掌握，然后进入到下一个页面/漏洞知识点。</strong>    </p>
+<h2 id="_1">项目介绍</h2>
+<p>owasp shepherd CN 是owasp shepherd 项目的中文版本, 致力于帮助研发和测试同学提高web安全意识, 开发安全的web系统
+对原项目修改如下:  </p>
+<ul>
+<li>对shepherd未汉化的题说明信息，进行汉化</li>
+<li>对shepherd理解起来比较困难的题,进行修改,让使用者更加容易理解题意</li>
+<li>仅保留了适合从事或将来从事开发和测试同学的基础web安全知识</li>
+<li>限制新注册账号使用时间,督促参与者尽快完成学习过程</li>
+<li>提供一套完整的学习笔记记录,包括漏洞产生的原因，源代码解析，漏洞修复建议等</li>
+</ul>
+<h2 id="_2">项目对象</h2>
+<p>本项目是最基本的常见web安全漏洞实例，适合有开发基础的任何同学使用，包括:  </p>
+<ul>
+<li>在职web系统开发及测试同学</li>
+<li>在校学生</li>
+<li>对安全基础知识感兴趣的任何同学</li>
+</ul>
+<h2 id="_3">项目目标</h2>
+<ul>
+<li>结合具体实例系统，帮助开发、测试同学掌握常见的web安全漏洞，提升安全意识</li>
+<li>真正明白安全漏洞产生原因及防护方法</li>
+<li>将安全开发知识应用到日常工作中,打造安全系统</li>
+</ul>
+<h2 id="_4">项目收益</h2>
+<ul>
+<li>深刻理解"一切用户的输入都可能是有害的", 学习使用代理工具, 修改浏览器发送的HTTP请求包  </li>
+<li>掌握常见的web安全漏洞(基本涵盖了OWASP十大web应用风险)的危害及测试方法</li>
+<li>结合示例项目源代码,加深理解安全漏洞产生原因,及修复方案,进而打造安全系统</li>
+</ul>
+<h2 id="_5">项目课程</h2>
+<p>主要使用 Field Training 和 Private两个等级的安全漏洞，列表如下</p>
+<ul>
+<li>SQL注入(SQL Injection)</li>
+<li>SQL注入中级版(SQL Injection Challenge One)</li>
+<li>跨站脚本漏洞(Cross Site Scripting)</li>
+<li>跨站脚本初级版(Cross Site Scripting 1)</li>
+<li>安全错误配置(Security Misconfiguration)</li>
+<li>没有限制URL访问(Failure to Restrict URL Access)</li>
+<li>没有限制URL访问中级版(Failure To Restrict URL Access Challenge 1)</li>
+<li>失效的身份验证和会话管理（Broken Authentication and Session Management)</li>
+<li>会话管理中级版(Session Management Challenge One)</li>
+<li>跨站请求伪造(Cross Site Request Forgery)</li>
+<li>不安全加密存储(Insecure Cryptographic Storage)</li>
+<li>不安全加密存储中级(Insecure Cryptographic Storage Challenge 1)</li>
+<li>不安全直接对象引用(Insecure Direct Object References)</li>
+<li>不不安全直接对象引用中级版(Insecure Direct Object References Challenge One)</li>
+<li>失效的数据验证(Poor Data Validation)</li>
+<li>失效的数据验证中级版(Poor Validation One)</li>
+</ul>
+<p>每个课程，都有详细介绍，帮助参与者学习知识点(适合零基础同学)<br />
+当参与者多次闯关失败，则会显示提示信息，进一步帮助参与者学习和理解课程  </p>
+<h2 id="_6">参与项目</h2>
+<p>本项目是<strong>半收费</strong>项目,具体说明如下:  </p>
+<ul>
+<li>课程开始前,参与学员需要交 49.9元,获得注册账号  </li>
+<li>学员在一周内完成所有课程(通关), 则表示学有所成, 将<strong>全额退费</strong></li>
+<li>学员在二周内完成所有课程(通关), 则表示学有所成, 将退还90%费用</li>
+<li>学员在三周内完成所有课程(通关), 则表示学有所成, 将退还50%费用</li>
+<li>学员在三周以后完成所有课程,则不退还任何费用</li>
+</ul>
+<p>一个账号的有效期为一个月,重新申请则认为是新成员</p>
+<p><strong>为什么半收费</strong><br />
+收费课程更有利学员学习 <br />
+同时考虑到本项目并非为了盈利,因此本项目采用半收费的形式<br />
+<strong>真心的希望各位参与同学真正的学习到安全知识,应用到将来的开发项目中</strong> </p>
+<p><em>如果您是学生或者觉得本项目参与门槛过高,可在联系客服微信时说明,并给出您希望的费用,我们认为完全免费很难达到学习的目的，所以我们拒绝完全免费学习，感谢大家理解</em></p>
+<p><strong>具体参加流程</strong><br />
+联系客服-&gt;付费-&gt;获得账号和密码-&gt;登录后台进行学习-&gt;完成学习-&gt;联系客服退费-&gt;账号在一个月后过期</p>
+<p><strong>客服企业微信</strong><br />
+加客服微信时,备注:付费学习<br />
+<img alt="shepherd CN客服" src="http://my.cdn.720life.cn/uploads/free/202108/16_16_30_77086.png" /></p>
+<h2 id="_7">项目支持</h2>
+<p>该项目是优秀的学习材料，非常适合开发和测试同学进行学习，使用场景包括但不限于  </p>
+<ul>
+<li>各大高校软件开发相关专业同学</li>
+<li>各公司开发和测试同学</li>
+</ul>
+<p>如果您是老师/公司技术人员想本地化部署本项目，请联系我们<br />
+如果您对本项目有任何建议，请联系我们</p>
+<p>owasp社区在持续的更新和维护，本工作室致力于维护该项目的中文版本!</p>
+<h2 id="_8">项目网址</h2>
+<p><a href="http://shepherd-cn.anquanbiji.com">owasp shepherd cn online</a> </p>
+<h2 id="_9">致谢</h2>
+<p>感谢owasp shepherd 项目组，开发和维护该套学习材料<br />
+<a href="https://github.com/OWASP/SecurityShepherd" title="owasp shepherd 源代码">owasp shepherd github</a><br />
+<a href="https://wiki.owasp.org/index.php/OWASP_Security_Shepherd" title="owasp shepherd 项目介绍">owasp shepherd project</a></p>
+                
+              
+              
+                <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81NDA3MS8zMDU0Mw==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="index.html" class="md-footer__link md-footer__link--prev" aria-label="上一页: shepherd 项目介绍" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              shepherd 项目介绍
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="http_proxy.html" class="md-footer__link md-footer__link--next" aria-label="下一页: 学前基础知识" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              学前基础知识
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            ©Copyright 2021 - 安全笔记 小组 - 专注安全防御解决方案 - <a href="http://anquanbiji.com" target="_blank"><strong>安全笔记网站</strong></a>
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>

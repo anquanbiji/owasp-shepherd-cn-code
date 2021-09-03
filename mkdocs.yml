@@ -1,0 +1,45 @@
+site_name: OWASP shepherd 学习笔记
+site_description: OWASP shepherd 学习笔记，专注对 owasp shepherd 中文翻译，漏洞源代码学习，让开发和测试同学真正理解安全漏洞，提高安全意识，打造安全的系统
+site_author: anquanbiji.com
+copyright:  ©Copyright 2021 - 安全笔记 小组 - 专注安全防御解决方案 - <a href="http://anquanbiji.com" target="_blank"><strong>安全笔记网站</strong></a> 
+use_directory_urls: false
+theme:
+  name: material
+  language: zh
+
+# 访问统计
+extra_javascript:
+    - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+    
+# 第三方评论
+extra:
+  disqus: 'something'
+
+markdown_extensions:
+    - pymdownx.superfences
+    - pymdownx.details
+  
+nav:
+    - shepherd 项目介绍: index.md
+    - shepherd CN 介绍: security_qa.md
+    - 学前基础知识: http_proxy.md 
+    - web漏洞学习笔记: 
+        - 基础等级课程:
+            - Insecure Direct Object References(不安全的直接对象引用): vul/insecure-derect-object-references.md 
+            - Poor Data Validation(失效的数据验证): vul/poor-data-validation.md 
+            - Security Misconfiguration(安全配置错误): vul/security-misconfiguration.md 
+            - Broken Authentication and Session Management(失效的身份认证和会话管理): vul/Broken-Authentication-and-Session-Management.md
+            - Failure to Restrict URL Access(没有限制URL访问): vul/Failure-to-Restrict-URL-Access.md 
+            - Cross Site Scripting(跨站脚本攻击): vul/Cross-Site-Scripting.md
+            - Cross Site Scripting One(跨站脚本攻击 1): vul/Cross-Site-Scripting-One.md
+        - 列兵等级课程:
+            - Insecure Cryptographic Storage(不安全的加密存储): vul/Insecure-Cryptographic-Storage.md
+            - SQL Injection Lesson(SQL 注入): vul/SQL-Injection-Lesson.md
+            - Insecure Cryptographic Storage Challenge 1(不安全的加密存储 1): vul/Insecure-Cryptographic-Storage-Challenge-1.md 
+            - Insecure Direct Object References Challenge One(不安全的直接对象引用 1):  vul/Insecure-Direct-Object-References-Challenge-One.md
+            - Poor Validation One(失效的数据认证 1): vul/Poor-Validation-One.md
+            - SQL Injection Challenge One(SQL 注入 1): vul/SQL-Injection-Challenge-One.md 
+            - Session Management Challenge One(会话管理 1): vul/Session-Management-Challenge-One.md
+            - Failure To Restrict URL Access Challenge 1(没有限制URL访问 1): vul/Failure-To-Restrict-URL-Access-Challenge-1.md
+            - Cross-Site Request Forgery(跨站请求伪造): vul/Cross-Site-Request-Forgery.md
+    - 联系我们: contact.md

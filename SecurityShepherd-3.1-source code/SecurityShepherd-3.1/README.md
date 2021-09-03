@@ -79,7 +79,7 @@ owasp shepherd CN 是owasp shepherd 项目的中文版本, 致力于帮助研发
 
 **客服企业微信**  
 加客服微信时,备注:付费学习  
-![shepherd CN客服](http://my.cdn.720life.cn/uploads/free/202108/16_16_30_77086.png)
+![shepherd CN客服](http://my.cdn.lolyzf.cn/uploads/free/202108/16_16_30_77086.png)
 
 
 ## 项目支持  
@@ -93,8 +93,6 @@ owasp shepherd CN 是owasp shepherd 项目的中文版本, 致力于帮助研发
 
 owasp社区在持续的更新和维护，本工作室致力于维护该项目的中文版本!
 
-## 项目网址 
-[owasp shepherd cn online](http://shepherd-cn.anquanbiji.com) 
 
 ## 致谢
 感谢owasp shepherd 项目组，开发和维护该套学习材料  
