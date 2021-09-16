@@ -230,6 +230,7 @@ update modules set moduleStatus='open' where incrementalRank < 80 and  moduleCat
 docker exec -it secshep_mysql /bin/bash
 mysql -uroot -p 
 #mysql 密码是 CowSaysMoo
+use core
 update modules set moduleStatus='closed'
 update modules set moduleStatus='open' where incrementalRank < 80 and  moduleCategory not like '%Mobile%'
 

@@ -3,6 +3,10 @@ site_description: OWASP shepherd 学习笔记，专注对 owasp shepherd 中文�
 site_author: anquanbiji.com
 copyright:  ©Copyright 2021 - 安全笔记 小组 - 专注安全防御解决方案 - <a href="http://anquanbiji.com" target="_blank"><strong>安全笔记网站</strong></a> 
 use_directory_urls: false
+repo_name: anquanbiji/owasp-shepherd-cn-code
+repo_url: https://github.com/anquanbiji/owasp-shepherd-cn-code
+
+
 theme:
   name: material
   language: zh
@@ -24,7 +28,7 @@ nav:
     - shepherd CN 介绍: security_qa.md
     - 学前基础知识: http_proxy.md 
     - web漏洞学习笔记: 
-        - 基础等级课程:
+        - 基础等级(Field Training)课程:
             - Insecure Direct Object References(不安全的直接对象引用): vul/insecure-derect-object-references.md 
             - Poor Data Validation(失效的数据验证): vul/poor-data-validation.md 
             - Security Misconfiguration(安全配置错误): vul/security-misconfiguration.md 
@@ -32,7 +36,7 @@ nav:
             - Failure to Restrict URL Access(没有限制URL访问): vul/Failure-to-Restrict-URL-Access.md 
             - Cross Site Scripting(跨站脚本攻击): vul/Cross-Site-Scripting.md
             - Cross Site Scripting One(跨站脚本攻击 1): vul/Cross-Site-Scripting-One.md
-        - 列兵等级课程:
+        - 列兵等级(Private)课程:
             - Insecure Cryptographic Storage(不安全的加密存储): vul/Insecure-Cryptographic-Storage.md
             - SQL Injection Lesson(SQL 注入): vul/SQL-Injection-Lesson.md
             - Insecure Cryptographic Storage Challenge 1(不安全的加密存储 1): vul/Insecure-Cryptographic-Storage-Challenge-1.md 
@@ -42,4 +46,23 @@ nav:
             - Session Management Challenge One(会话管理 1): vul/Session-Management-Challenge-One.md
             - Failure To Restrict URL Access Challenge 1(没有限制URL访问 1): vul/Failure-To-Restrict-URL-Access-Challenge-1.md
             - Cross-Site Request Forgery(跨站请求伪造): vul/Cross-Site-Request-Forgery.md
+        - 下士等级(Corporal)课程:
+            - Unvalidated Redirects and Forwards(未验证的重定向和转发): vul/Unvalidated-Redirects-and-Forwards.md
+            - SQL Injection Challenge Two(SQL注入挑战 2): vul/SQL-Injection-Challenge-Two.md
+            - SQL Injection Escaping Challenge(SQL 注入转义): vul/SQL-Injection-Escaping-Challenge.md 
+        - 中士等级(Sergeant)课程:
+            - Session Management Challenge Two(会话管理 2): vul/Session-Management-Challenge-Two.md 
+            - Cross Site Request Forgery Challenge One(跨站请求伪造 (CSRF) 1): vul/Cross-Site-Request-Forgery-Challenge-One.md
+            - Session Management Challenge Three(会话管理 3): vul/Session-Management-Challenge-Three.md
+            - Cross Site Scripting Two(跨站脚本攻击 2): vul/Cross-Site-Scripting-Two.md
+            - Insecure Cryptographic Storage Challenge 2(不安全加密存储 2): vul/Insecure-Cryptographic-Storage-Challenge-2.md
+            - Insecure Direct Object References Challenge Two(不安全的直接对象引用 2): vul/Insecure-Direct-Object-References-Challenge-Two.md 
+            - Cross Site Scripting 3(跨站脚本 (XSS)3): vul/Cross-Site-Scripting-3.md 
+        - 中尉等级(Lieutenant)课程:
+            - Insecure Direct Object Reference Bank Challenge(银行不安全的直接对象引用): vul/Insecure-Direct-Object-Reference-Bank-Challenge.md 
+            - SQL Injection Challenge Three(SQL 注入 3 ): vul/SQL-Injection-Challenge-Three.md
+        - 少校等级(major)课程:
+            - Session Management Challenge Four(会话管理 4): vul/Session-Management-Challenge-Four.md 
+            - Cross Site Scripting 4(跨站脚本攻击 4): vul/Cross-Site-Scripting-4.md
+            
     - 联系我们: contact.md
