@@ -236,3 +236,105 @@ update modules set moduleStatus='open' where incrementalRank < 80 and  moduleCat
 
 ```
 
+## 笔记 
+对owasp shepherd完整学习过程进行记录，包括题目理解、源代码解析、解题过程、修复方案等多方面对一个题进行学习   
+
+通过对v3.1(2018年版本),web漏洞相关题进行学习，总体感觉这套练习题非常不错，适合不同需求、不同知识背景的的安全从业者  
+其中难免有一些难以理解的题，从答案来说也比较难理解，不知道一些信息从哪里而来....   
+
+为了便于理解，将做过的题都加入到学习文档中, 希望对初学者有所帮助  
+
+其中有几个注意点:  
+- CSRF 有很多功能需要另一个账号配合才能完成，因此没有做完  
+- 一些难以理解的题(看完提示仍然不知道怎么回事的)，没有整理学习笔记  
+Session Management Challenge 8  
+Insecure Cryptographic Storage Challenge 4   
+Security Misconfig Cookie Flag   
+Insecure Cryptographic Storage Home Made Keys   
+
+
+``` mermaid
+graph LR
+  A[Start] --> B{Error?};
+  B -->|Yes| C[Hmm...];
+  C --> D[Debug];
+  D --> B;
+  B ---->|No| E[Yay!];
+```
+
+``` mermaid
+sequenceDiagram
+  Alice->>John: Hello John, how are you?
+  loop Healthcheck
+      John->>John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts!
+  John-->>Alice: Great!
+  John->>Bob: How about you?
+  Bob-->>John: Jolly good!
+```
+
+``` mermaid
+stateDiagram-v2
+  [*] --> Active
+
+  state Active {
+    [*] --> NumLockOff
+    NumLockOff --> NumLockOn : EvNumLockPressed
+    NumLockOn --> NumLockOff : EvNumLockPressed
+    --
+    [*] --> CapsLockOff
+    CapsLockOff --> CapsLockOn : EvCapsLockPressed
+    CapsLockOn --> CapsLockOff : EvCapsLockPressed
+    --
+    [*] --> ScrollLockOff
+    ScrollLockOff --> ScrollLockOn : EvScrollLockPressed
+    ScrollLockOn --> ScrollLockOff : EvScrollLockPressed
+  }
+```
+
+``` mermaid
+classDiagram
+  Person <|-- Student
+  Person <|-- Professor
+  Person : +String name
+  Person : +String phoneNumber
+  Person : +String emailAddress
+  Person: +purchaseParkingPass()
+  Address "1" <-- "0..1" Person:lives at
+  class Student{
+    +int studentNumber
+    +int averageMark
+    +isEligibleToEnrol()
+    +getSeminarsTaken()
+  }
+  class Professor{
+    +int salary
+  }
+  class Address{
+    +String street
+    +String city
+    +String state
+    +int postalCode
+    +String country
+    -validate()
+    +outputAsLabel()  
+  }
+```
+
+``` mermaid
+erDiagram
+  CUSTOMER ||--o{ ORDER : places
+  ORDER ||--|{ LINE-ITEM : contains
+  CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+

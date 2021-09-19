@@ -10,6 +10,10 @@ repo_url: https://github.com/anquanbiji/owasp-shepherd-cn-code
 theme:
   name: material
   language: zh
+  features:
+
+  - navigation.top   # 回到顶端
+  - content.code.annotate
 
 # 访问统计
 extra_javascript:
@@ -19,14 +23,54 @@ extra_javascript:
 extra:
   disqus: 'something'
 
+
 markdown_extensions:
-    - pymdownx.superfences
-    - pymdownx.details
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
   
+
+      
 nav:
     - shepherd 项目介绍: index.md
     - shepherd CN 介绍: security_qa.md
     - 学前基础知识: http_proxy.md 
+    #- 学员范围:
+    #   - 企业内部安全培训: enterprise_security_developer_taining.md 
+    #   - 安全开发测试教程 : enterprise_security_developer_taining.md 
     - web漏洞学习笔记: 
         - 基础等级(Field Training)课程:
             - Insecure Direct Object References(不安全的直接对象引用): vul/insecure-derect-object-references.md 
@@ -64,5 +108,41 @@ nav:
         - 少校等级(major)课程:
             - Session Management Challenge Four(会话管理 4): vul/Session-Management-Challenge-Four.md 
             - Cross Site Scripting 4(跨站脚本攻击 4): vul/Cross-Site-Scripting-4.md
-            
+            - SQL Injection 4(SQL 注入 4): vul/SQL-Injection-4.md 
+            - Insecure Cryptographic Storage Challenge 3(不安全加密存储 3): vul/Insecure-Cryptographic-Storage-Challenge-3.md 
+            - Poor Validation Two(失效的数据验证 2): vul/Poor-Validation-Two.md
+            - Failure to Restrict URL Access Challenge 2(没有限制URL访问 2): vul/Failure-to-Restrict-URL-Access-Challenge-2.md
+            - Cross Site Scripting 5(跨站脚本攻击 5): vul/Cross-Site-Scripting-5.md
+        - 上将等级(admiral)课程:
+            - SQL Injection Challenge 5(SQL 注入 5): vul/SQL-Injection-Challenge-5.md 
+            - SQL Injection Stored Procedure Challenge(SQL 注入储存程序): vul/SQL-Injection-Stored-Procedure-Challenge.md 
+            - Cross Site Scripting Six(跨站脚本攻击 6): vul/Cross-Site-Scripting-Six.md 
+            - SQL Injection Challenge 6(SQL 注入 6): vul/SQL-Injection-Challenge-6.md 
+            - Session Management Challenge Five(会话管理 5): vul/Session-Management-Challenge-Five.md
+            - Failure to Restrict URL Access Challenge 3(没有限制URL访问 3): vul/Failure-to-Restrict-URL-Access-Challenge-3.md 
+            - Session Management Challenge Six(会话管理 6): vul/Session-Management-Challenge-Six.md 
+            - Session Management Challenge Seven(会话管理 7): vul/Session-Management-Challenge-Seven.md 
+            - SQL Injection Challenge 7(SQL 注入 7): vul/SQL-Injection-Challenge-7.md 
+    - 移动漏洞学习笔记:
+        - 列兵等级(Private)课程: 
+            - Insecure Data Storage(移动不安全的数据存储): vul/app/Insecure-Data-Storage.md
+            - Mobile Reverse Engineering(移动逆向工程): vul/app/Mobile-Reverse-Engineering.md
+            - Unintended Data Leakage(移动数据意外泄漏): vul/app/Unintended-Data-Leakage.md
+            - Content Provider Leakage(内容提供者泄漏): vul/app/Content-Provider-Leakage.md 
+        - 下士等级(Corporal)课程:
+            - Reverse Engineering 1(逆向工程 1): vul/app/Reverse-Engineering-1.md 
+            - Client Side Injection(移动客户端注入): vul/app/Client-Side-Injection.md 
+            - Poor Authentication(失效的身份认证): vul/app/Poor-Authentication.md 
+            - Broken Crypto(失效的加密): vul/app/Broken-Crypto.md
+            - Mobile Reverse Engineer 2(逆向工程 2): vul/app/Mobile-Reverse-Engineer-2.md
+        - 中士等级(Sergeant)课程:    
+            - Mobile Insecure Data Storage 1(不安全的数据存储 1): vul/app/Mobile-Insecure-Data-Storage-1.md
+            - Mobile Broken Crypto 1(失效加密 1): vul/app/Mobile-Broken-Crypto-1.md 
+            - Mobile Reverse Engineer 3(逆向工程 3): vul/app/Mobile-Reverse-Engineer-3.md
+            - Mobile Insecure Data Storage 2(不安全的数据存储 2): vul/app/Mobile-Insecure-Data-Storage-2.md
+      
     - 联系我们: contact.md
+    - 后记:
+        - 漏洞列表: vullist.md
+        - web开发人员需要学习哪里安全知识: security_develop_taining.md
+        - 企业面向研发的安全培训: enterprise_security_developer_taining.md 
