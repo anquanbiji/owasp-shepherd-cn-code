@@ -21,14 +21,14 @@
 ### 设置  
 - burp suite设置
 确认代理监听的端口，默认是(127.0.0.1:8080)
-![](http://my.cdn.720life.cn/uploads/free/202108/16_42_58_90111.png)
+![](/my.cdn.720life.cn/uploads/free/202108/16_42_58_90111.png)
 
 - 浏览器配置 
 以firefox为例  
 1.在浏览器地址栏输入 about:preferences  打开配置界面  
 2.在最下方找到 网络设置 选项，点击 设置 按钮  
 3.手动配置代理 填写本地IP(127.0.0.1)和端口(8080),勾选将此代理用户HTTPS,如下图所示
-![](http://my.cdn.720life.cn/uploads/free/202108/16_41_13_37767.png)
+![](/my.cdn.720life.cn/uploads/free/202108/16_41_13_37767.png)
 
 ### 功能介绍
 burp有很多功能，本课程主要代理功能和编/解码功能即可，其他功能可以参考[burp 官方文档](https://portswigger.net/burp/documentation/desktop/getting-started)
@@ -36,10 +36,10 @@ burp有很多功能，本课程主要代理功能和编/解码功能即可，其
 #### 代理功能
 - 拦截浏览器请求 
 点击 burp工具的 Proxy->intercept->intercept is off   
-![](http://my.cdn.720life.cn/uploads/free/202108/16_45_27_14158.png)
+![](/my.cdn.720life.cn/uploads/free/202108/16_45_27_14158.png)
 
 使用浏览器发送http请求，在burp上进行拦截请求 效果如下  
-![](http://my.cdn.720life.cn/uploads/free/202108/16_47_15_64816.png)
+![](/my.cdn.720life.cn/uploads/free/202108/16_47_15_64816.png)
 
 *在该页面可以对请求内容进行修改 *
 
@@ -48,7 +48,7 @@ burp有很多功能，本课程主要代理功能和编/解码功能即可，其
 
 #### 编码和解码功能
 burp 的Decoder功能，可以进行基本的编码操作 
-![](http://my.cdn.720life.cn/uploads/free/202108/17_27_17_84342.png)
+![](/my.cdn.720life.cn/uploads/free/202108/17_27_17_84342.png)
 
 ## OWASP shepherd基础知识
 

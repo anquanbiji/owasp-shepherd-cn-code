@@ -20,8 +20,8 @@ extra_javascript:
     - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
     
 # 第三方评论
-extra:
-  disqus: 'something'
+#extra:
+#  disqus: 'something'
 
 
 markdown_extensions:
@@ -144,5 +144,8 @@ nav:
     - 联系我们: contact.md
     - 后记:
         - 漏洞列表: vullist.md
-        - web开发人员需要学习哪里安全知识: security_develop_taining.md
+        - 安全开发基础知识: security_develop_taining.md
         - 企业面向研发的安全培训: enterprise_security_developer_taining.md 
+        - 安全测试QA版: qa_taining.md 
+        - 专业安全测试人员: securityer_taining.md 
+        
